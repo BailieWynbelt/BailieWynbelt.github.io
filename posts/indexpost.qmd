@@ -42,9 +42,21 @@ clean_penguin_data <- penguin_data %>%
   drop_na()
 ```
 
+## Data manipulation
+
+The following lines of code are manipulation the "clean_penguin_data" data set. The code is converting millimeters to centimeters, and grams to milligrams. New columns will be created in the **clean_penguin_data**
+
+```{r Data tidying}
+clean_penguin_data <- clean_penguin_data %>%
+  mutate(bill_length_cm = bill_length_mm/10,
+         bill_depth_cm = bill_depth_mm/10,
+         flipper_length_cm = flipper_length_mm/10,
+         body_mass_mg = body_mass_g/1000)
+```
+
 ## Data analysis of islands 
 
-Below are lines of code that are summarizing the "clean_penguin_data" based on specific attributes. The following is grouping the data by *island*, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called **"island_penguin_summary"**.
+Below are lines of code that are summarizing the "clean_penguin_data" based on specific attributes. The following is grouping the data by *island*, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called **"island_penguin_summary"**.
 
 ```{r  Data Analysis by Island}
 island_penguin_summary <- clean_penguin_data %>%
@@ -58,7 +70,7 @@ island_penguin_summary <- clean_penguin_data %>%
 
 ## Data analysis of sex 
 
-Below are lines of code that are summarizing the "clean_penguin_data" based on specific attributes. The following is grouping the data by *sex*, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called **"sex_penguin_summary"**.
+Below are lines of code that are summarizing the "clean_penguin_data" based on specific attributes. The following is grouping the data by *sex*, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called **"sex_penguin_summary"**.
 
 ```{r Data Analysis by Sex}
 sex_penguin_summary <- clean_penguin_data %>%
@@ -71,12 +83,12 @@ sex_penguin_summary <- clean_penguin_data %>%
 
 ## Data analysis of species 
 
-Below are lines of code that are summarizing the **"clean_penguin_data"** based on specific attributes. The following is grouping the data by *species*, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called **"species_penguin_summary"**.
+Below are lines of code that are summarizing the **"clean_penguin_data"** based on specific attributes. The following is grouping the data by *species*, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called **"species_penguin_summary"**.
 
 ```{r Data Analysis by Species}
 species_penguin_summary <- clean_penguin_data %>%
   group_by(species) %>%
-  summarize(bill_culmen_length_mm = mean(bill_length_mm),
+  summarize(bill_length_mm = mean(bill_length_mm),
             mean_bill_depth_mm = mean(bill_depth_mm),
             mean_flipper_length_mm = mean(flipper_length_mm),
             mean_body_mass_g = mean(body_mass_g))
