@@ -3,18 +3,18 @@ project:
   output-dir: docs
 
 website:
-  title: "BailieWynbelt.github.io"
+  title: "Bailie Wynbelt"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+   background: primary
+   left:
+     - href: index.qmd
+       text: Home
+     - about.qmd
+     - projects.qmd # my new navbar page
 
 format:
   html:
-    theme: cosmo
+    theme: journal
     css: styles.css
-    toc: true
 
 editor: visual
-

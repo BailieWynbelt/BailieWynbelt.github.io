@@ -1,11 +1,21 @@
 ---
-title: "BailieWynbelt.github.io"
+title: "Bailie Wynbelt"
+image: headshot.JPG
+about: 
+  template: trestles
+  image-shape: rounded
+  image-width: 15em
+  links:
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/bailie-wynbelt-ab8535208/
+    - text: GitHub
+      href: https://github.com/BailieWynbelt
+    - text: Tableau
+      href: https://public.tableau.com/app/profile/bailie.wynbelt
+    - text: Email
+      href: mailto:wynbeltb@gmail.com
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
 ```{r}
-1 + 1
+
 ```
