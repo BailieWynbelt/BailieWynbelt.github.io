@@ -10,11 +10,17 @@ website:
      - href: index.qmd
        text: Home
      - about.qmd
+     - resume.qmd
      - projects.qmd # my new navbar page
 
 format:
   html:
     theme: journal
     css: styles.css
+    code-link: true
+    code-fold: show
+    code-tools: true
+    code-block-bg: "lightgreen"
+    code-block-border-left: "green"
 
 editor: visual

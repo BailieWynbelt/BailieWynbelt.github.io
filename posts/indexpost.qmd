@@ -1,0 +1,101 @@
+---
+title: "Palmer Penguin Analysis and Visualization"
+author: "Bailie Wynbelt"
+date: "2023-03-25"
+categories: [R, Analysis, Visualization]
+image: "penguins.jpg"
+format: html
+---
+
+I used the free Palmer Penguins data set in R to conduct analysis and create visualizations
+
+## Reading tidyverse 
+
+The following lines of code is reading in the tidyverse package so specific functions can be used to analyze the data.
+
+```{r Loading Packages}
+library(tidyverse)
+```
+
+## Loading in the palmer penguin data set
+
+```{r Reading in Data}
+library(palmerpenguins)
+penguin_data <- penguins
+```
+
+## Gaining a general oversight of the data 
+
+The **head()** and **tail()** functions give a general oversight of what the data is comprised of in terms of rows and columns.
+
+```{r Overview of data}
+head(penguin_data)
+tail(penguin_data)
+```
+
+## Data tidying
+
+The following lines of code are tidying the "penguin_data" data set. The code is removing any values in the data set that have an NA and creating a new data set called **"clean_penguin_data"**
+
+```{r Data tidying}
+clean_penguin_data <- penguin_data %>%
+  drop_na()
+```
+
+## Data analysis of islands 
+
+Below are lines of code that are summarizing the "clean_penguin_data" based on specific attributes. The following is grouping the data by *island*, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called **"island_penguin_summary"**.
+
+```{r  Data Analysis by Island}
+island_penguin_summary <- clean_penguin_data %>%
+  group_by(island) %>%
+  summarize(mean_bill_length_mm = mean(bill_length_mm),
+            mean_bill_depth_mm = mean(bill_depth_mm),
+            mean_flipper_length_mm = mean(flipper_length_mm),
+            mean_body_mass_g = mean(body_mass_g))
+
+```
+
+## Data analysis of sex 
+
+Below are lines of code that are summarizing the "clean_penguin_data" based on specific attributes. The following is grouping the data by *sex*, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called **"sex_penguin_summary"**.
+
+```{r Data Analysis by Sex}
+sex_penguin_summary <- clean_penguin_data %>%
+  group_by(sex) %>%
+  summarize(mean_bill_length_mm = mean(bill_length_mm),
+            mean_bill_depth_mm = mean(bill_depth_mm),
+            mean_flipper_length_mm = mean(flipper_length_mm),
+            mean_body_mass_g = mean(body_mass_g))
+```
+
+## Data analysis of species 
+
+Below are lines of code that are summarizing the **"clean_penguin_data"** based on specific attributes. The following is grouping the data by *species*, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called **"species_penguin_summary"**.
+
+```{r Data Analysis by Species}
+species_penguin_summary <- clean_penguin_data %>%
+  group_by(species) %>%
+  summarize(bill_culmen_length_mm = mean(bill_length_mm),
+            mean_bill_depth_mm = mean(bill_depth_mm),
+            mean_flipper_length_mm = mean(flipper_length_mm),
+            mean_body_mass_g = mean(body_mass_g))
+```
+
+## Data visualization of body mass vs flipper length of penguins 
+
+The code lines below are utilizing the **ggplot** package to visualize the "clean_penguin_data". This data is a scatter plot with *body mass* on the x-axis and *flipper length* on the y-axis, with the color of data points being differentiated by color. Additionally, the graph is facted by *species* of the penguins
+
+```{r Visualization}
+ggplot(data = clean_penguin_data,
+       mapping = aes(x = body_mass_g, 
+                     y = flipper_length_mm,
+                     color = sex)) +
+  geom_point() +
+  facet_wrap(~species) +
+  labs(x = "Body Mass of Penguins (g)",
+       y = "Flipper Length of Penguins (mm)",
+       title = "Body Mass (g) VS Flipper Length (mm) of Penguins") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```

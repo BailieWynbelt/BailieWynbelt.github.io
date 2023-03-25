@@ -1,16 +1,72 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "posts/indexpost.html",
+    "href": "posts/indexpost.html",
+    "title": "Palmer Penguin Analysis and Visualization",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "I used the free Palmer Penguins data set in R to conduct analysis and create visualizations"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "BailieWynbelt.github.io",
+    "objectID": "posts/indexpost.html#reading-tidyverse",
+    "href": "posts/indexpost.html#reading-tidyverse",
+    "title": "Palmer Penguin Analysis and Visualization",
+    "section": "Reading tidyverse",
+    "text": "Reading tidyverse\nThe following lines of code is reading in the tidyverse package so specific functions can be used to analyze the data.\n\nCodelibrary(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.4.0      ✔ purrr   0.3.5 \n✔ tibble  3.1.8      ✔ dplyr   1.0.10\n✔ tidyr   1.2.1      ✔ stringr 1.4.1 \n✔ readr   2.1.3      ✔ forcats 0.5.2 \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()"
+  },
+  {
+    "objectID": "posts/indexpost.html#loading-in-the-palmer-penguin-data-set",
+    "href": "posts/indexpost.html#loading-in-the-palmer-penguin-data-set",
+    "title": "Palmer Penguin Analysis and Visualization",
+    "section": "Loading in the palmer penguin data set",
+    "text": "Loading in the palmer penguin data set\n\nCodelibrary(palmerpenguins)\n\nWarning: package 'palmerpenguins' was built under R version 4.2.3\n\nCodepenguin_data <- penguins"
+  },
+  {
+    "objectID": "posts/indexpost.html#gaining-a-general-oversight-of-the-data",
+    "href": "posts/indexpost.html#gaining-a-general-oversight-of-the-data",
+    "title": "Palmer Penguin Analysis and Visualization",
+    "section": "Gaining a general oversight of the data",
+    "text": "Gaining a general oversight of the data\nThe head() and tail() functions give a general oversight of what the data is comprised of in terms of rows and columns.\n\nCodehead(penguin_data)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year\n  <fct>   <fct>              <dbl>         <dbl>       <int>   <int> <fct> <int>\n1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007\n2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007\n3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007\n4 Adelie  Torgersen           NA            NA            NA      NA <NA>   2007\n5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007\n6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007\n# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g\n\nCodetail(penguin_data)\n\n# A tibble: 6 × 8\n  species   island bill_length_mm bill_depth_mm flipper_le…¹ body_…² sex    year\n  <fct>     <fct>           <dbl>         <dbl>        <int>   <int> <fct> <int>\n1 Chinstrap Dream            45.7          17            195    3650 fema…  2009\n2 Chinstrap Dream            55.8          19.8          207    4000 male   2009\n3 Chinstrap Dream            43.5          18.1          202    3400 fema…  2009\n4 Chinstrap Dream            49.6          18.2          193    3775 male   2009\n5 Chinstrap Dream            50.8          19            210    4100 male   2009\n6 Chinstrap Dream            50.2          18.7          198    3775 fema…  2009\n# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g"
+  },
+  {
+    "objectID": "posts/indexpost.html#data-analysis-of-islands",
+    "href": "posts/indexpost.html#data-analysis-of-islands",
+    "title": "Palmer Penguin Analysis and Visualization",
+    "section": "Data analysis of islands",
+    "text": "Data analysis of islands\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by island, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called “island_penguin_summary”.\n\nCodeisland_penguin_summary <- clean_penguin_data %>%\n  group_by(island) %>%\n  summarize(mean_bill_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
+  },
+  {
+    "objectID": "posts/indexpost.html#data-analysis-of-sex",
+    "href": "posts/indexpost.html#data-analysis-of-sex",
+    "title": "Palmer Penguin Analysis and Visualization",
+    "section": "Data analysis of sex",
+    "text": "Data analysis of sex\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by sex, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called “sex_penguin_summary”.\n\nCodesex_penguin_summary <- clean_penguin_data %>%\n  group_by(sex) %>%\n  summarize(mean_bill_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
+  },
+  {
+    "objectID": "posts/indexpost.html#data-analysis-of-species",
+    "href": "posts/indexpost.html#data-analysis-of-species",
+    "title": "Palmer Penguin Analysis and Visualization",
+    "section": "Data analysis of species",
+    "text": "Data analysis of species\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by species, and calculating the mean of culmen length, culmen depth, flipper length, and body mass. This data is added to a new data frame called “species_penguin_summary”.\n\nCodespecies_penguin_summary <- clean_penguin_data %>%\n  group_by(species) %>%\n  summarize(bill_culmen_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
+  },
+  {
+    "objectID": "posts/indexpost.html#data-visualization-of-body-mass-vs-flipper-length-of-penguins",
+    "href": "posts/indexpost.html#data-visualization-of-body-mass-vs-flipper-length-of-penguins",
+    "title": "Palmer Penguin Analysis and Visualization",
+    "section": "Data visualization of body mass vs flipper length of penguins",
+    "text": "Data visualization of body mass vs flipper length of penguins\nThe code lines below are utilizing the ggplot package to visualize the “clean_penguin_data”. This data is a scatter plot with body mass on the x-axis and flipper length on the y-axis, with the color of data points being differentiated by color. Additionally, the graph is facted by species of the penguins\n\nCodeggplot(data = clean_penguin_data,\n       mapping = aes(x = body_mass_g, \n                     y = flipper_length_mm,\n                     color = sex)) +\n  geom_point() +\n  facet_wrap(~species) +\n  labs(x = \"Body Mass of Penguins (g)\",\n       y = \"Flipper Length of Penguins (mm)\",\n       title = \"Body Mass (g) VS Flipper Length (mm) of Penguins\") +\n  theme(plot.title = element_text(hjust = 0.5))"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Palmer Penguin Analysis and Visualization\n\n\n\n\n\n\n\nR\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nMar 25, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/indexpost.html#data-tidying",
+    "href": "posts/indexpost.html#data-tidying",
+    "title": "Palmer Penguin Analysis and Visualization",
+    "section": "Data tidying",
+    "text": "Data tidying\nThe following lines of code are tidying the “penguin_data” data set. The code is removing any values in the data set that have an NA and creating a new data set called “clean_penguin_data”\n\nCodeclean_penguin_data <- penguin_data %>%\n  drop_na()"
   }
 ]
