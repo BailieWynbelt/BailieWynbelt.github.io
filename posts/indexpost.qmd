@@ -9,7 +9,7 @@ format: html
 
 I used the free Palmer Penguins data set in R to conduct analysis and create visualizations
 
-## Reading tidyverse 
+## Reading tidyverse
 
 The following lines of code is reading in the tidyverse package so specific functions can be used to analyze the data.
 
@@ -24,7 +24,7 @@ library(palmerpenguins)
 penguin_data <- penguins
 ```
 
-## Gaining a general oversight of the data 
+## Gaining a general oversight of the data
 
 The **head()** and **tail()** functions give a general oversight of what the data is comprised of in terms of rows and columns.
 
@@ -54,7 +54,7 @@ clean_penguin_data <- clean_penguin_data %>%
          body_mass_mg = body_mass_g/1000)
 ```
 
-## Data analysis of islands 
+## Data analysis of islands
 
 Below are lines of code that are summarizing the "clean_penguin_data" based on specific attributes. The following is grouping the data by *island*, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called **"island_penguin_summary"**.
 
@@ -68,7 +68,7 @@ island_penguin_summary <- clean_penguin_data %>%
 
 ```
 
-## Data analysis of sex 
+## Data analysis of sex
 
 Below are lines of code that are summarizing the "clean_penguin_data" based on specific attributes. The following is grouping the data by *sex*, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called **"sex_penguin_summary"**.
 
@@ -81,7 +81,7 @@ sex_penguin_summary <- clean_penguin_data %>%
             mean_body_mass_g = mean(body_mass_g))
 ```
 
-## Data analysis of species 
+## Data analysis of species
 
 Below are lines of code that are summarizing the **"clean_penguin_data"** based on specific attributes. The following is grouping the data by *species*, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called **"species_penguin_summary"**.
 
@@ -94,7 +94,7 @@ species_penguin_summary <- clean_penguin_data %>%
             mean_body_mass_g = mean(body_mass_g))
 ```
 
-## Data visualization of body mass vs flipper length of penguins 
+## Data visualization of body mass vs flipper length of penguins
 
 The code lines below are utilizing the **ggplot** package to visualize the "clean_penguin_data". This data is a scatter plot with *body mass* on the x-axis and *flipper length* on the y-axis, with the color of data points being differentiated by color. Additionally, the graph is facted by *species* of the penguins
 
