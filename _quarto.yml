@@ -20,7 +20,7 @@ format:
     code-link: true
     code-fold: show
     code-tools: true
-    code-block-bg: "lightgreen"
+    code-block-bg: "E5FFCC"
     code-block-border-left: "green"
 
 editor: visual
