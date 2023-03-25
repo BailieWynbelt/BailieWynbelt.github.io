@@ -2,8 +2,12 @@
 title: "About"
 ---
 
-About this site
+Welcome to my about page! I'm happy to have you here:) Currently, I am currently pursuing a Bachelor of Science in Information Science with an emphasis in Data Science at University of Arizona. I recently switched my major from Natural Resources: Rangeland Management. For the Natural Resource major, I had to take a class surrounding ecological statistics and coding. I fell in love with the idea of combining data science and ecology. This is when I made the switch to data science!
+
+Currently, I am working for the School of Natural Resources and the Environment as a Data Science Research Assistant. This role holds many tasks for me and I have loved every minute of it. Firstly, I am helping conduct research with the overall goal of 1) determining diet selectivity within southwestern rodents and 2) the efficiency of primers in DNA metabarcoding to detect specific plant species. Secondly, I am a preceptor for an introductory data science course. I absolutely love assisting in this course and helping students gain deeper skills in coding and statistical analysis.
+
+In my work, I aim to create helpful analysis and creative data visualizations that can help solve ecological problems. I am also very interested in applying my skills to nonprofit and charity work!
 
 ```{r}
-1 + 1
+
 ```

@@ -15,7 +15,9 @@ about:
     - text: Email
       href: mailto:wynbeltb@gmail.com
 ---
+
 ## This is me!
+
 Hello! My name is Bailie.
 
 I am currently pursuing a Bachelor of Science in Information Science with an emphasis in Data Science. My expected graduation data is May 2024.
@@ -24,15 +26,13 @@ In my spare time, you can find me hiking around beautiful southern Arizona or cr
 
 ## Education
 
-University of Arizona | Tucson, AZ |
-B.S in Information Science | August 2020 - May 2024
+University of Arizona \| Tucson, AZ \| B.S in Information Science \| August 2020 - May 2024
 
 ## Experience
 
-School of Natural Resources and the Environment | Data Science Research Assistant | January 2023 - present
+School of Natural Resources and the Environment \| Data Science Research Assistant \| January 2023 - present
 
-School of Natural Resources and the Environment ~ Ruyle Lab | Data Science Intern | August 2022 - December 2022
----
+## School of Natural Resources and the Environment \~ Ruyle Lab \| Data Science Intern \| August 2022 - December 2022
 
 ```{r}
 
