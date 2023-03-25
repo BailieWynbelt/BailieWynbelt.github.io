@@ -11,7 +11,7 @@ website:
        text: Home
      - about.qmd
      - resume.qmd
-     - projects.qmd # my new navbar page
+     - projects.qmd 
 
 format:
   html:

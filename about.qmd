@@ -1,5 +1,6 @@
 ---
 title: "About"
+image: outdoors.JPG
 ---
 
 Welcome to my about page! I'm happy to have you here:) Currently, I am currently pursuing a Bachelor of Science in Information Science with an emphasis in Data Science at University of Arizona. I recently switched my major from Natural Resources: Rangeland Management. For the Natural Resource major, I had to take a class surrounding ecological statistics and coding. I fell in love with the idea of combining data science and ecology. This is when I made the switch to data science!
