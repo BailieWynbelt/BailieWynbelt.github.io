@@ -1,6 +1,6 @@
 ---
 title: "About"
-image: outdoors.JPG
+image: outdoors.jpg
 about: 
   template: trestles
   image-shape: rounded
