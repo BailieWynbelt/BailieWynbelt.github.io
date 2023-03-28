@@ -2,7 +2,7 @@
 title: "About"
 image: outdoors.jpg
 about: 
-  template: trestles
+  template: jolla
   image-shape: rounded
   image-width: 15em
 ---
