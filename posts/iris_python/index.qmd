@@ -1,0 +1,112 @@
+---
+title: "Python - Iris Analysis and Visualization"
+author: "Bailie Wynbelt"
+date: "2023-10-17"
+categories: [Python, Analysis, Visualization]
+image: "iris.jpg"
+format: html
+jupyter: python3
+---
+I used the free Iris data set and python to conduct analysis and create visualizations
+
+## Importing and loading required packages
+
+The following code is importing both the pandas and matplotlib.pyplot package so specific functions can be used to analyze and visualize the data! Lets get started with exploring. It is important to note that these packages need to be installed first on your computer before you can run this
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+## Importing iris data set
+The iris data set is a free data set that is available! Below I am importing the data using the pd.read_csv function.
+```{python}
+# Create column names for dataframe
+col_names = ['sepal_length_cm','sepal_width_cm','petal_length_cm','petal_width_cm','species']
+
+# Download data from url
+csv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+
+# Import url using read_csv
+iris = pd.read_csv(csv_url, names = col_names)
+
+```
+
+## Gaining a general oversight of the data
+
+The **head()** and **tail()** functions give a general oversight of what the data is comprised of in terms of rows and columns. Moreover, we can view the first and last 5 rows of data.
+
+```{python}
+iris.head()
+iris.tail()
+```
+Great! Now we know what our data looks like. However, I want to make sure the data format is okay. To do so, I am going to confirm the data types of iris using the .dtypes. function. We can now see that the columns are all floats except the species column. This looks all good!
+```{python}
+iris.dtypes
+```
+## Data tidying
+
+The following lines of code are tidying the data set. The code is looking to see if the data set have any NA's. We can now see that there is zero NA's. This means we do not need to drop any rows.
+
+```{python}
+iris.isna().sum().sum()
+```
+
+## Data manipulation
+
+The following lines of code are manipulation the data set. The code is converting centimeters to millimeters. First, I created a function that converts from cm to mm and used .apply to apply to specific columns.
+
+```{python}
+def cm_to_mm(cm):
+    return cm * 10
+
+iris['sepal_length_mm'] = iris['sepal_length_cm'].apply(cm_to_mm)
+iris['sepal_length_mm'] = iris['sepal_width_cm'].apply(cm_to_mm)
+iris['petal_length_mm'] = iris['petal_length_cm'].apply(cm_to_mm)
+
+iris
+```
+
+## Data analysis of species
+
+Below are lines of code that are summarizing the data based on specific attributes. The following is grouping the data by flower species, and calculating the mean of sepal length, sepal width, and petal length. This data is added to a new data frame called **"species_summary"**. For the purpose of this question, we are only interested in using columns that contain data in cm.
+
+```{python}
+species_summary = iris.groupby('species').agg({
+    'sepal_length_cm': ['mean', 'min', 'max'],
+    'sepal_width_cm': ['mean', 'min', 'max'],
+    'petal_length_cm': ['mean', 'min', 'max']}).reset_index()
+
+
+species_summary.columns = ['species', 
+'mean_sepal_length', 'min_sepal_length','max_sepal_length',
+'mean_sepal_width', 'min_sepal_width', 'max_sepal_width',
+'mean_petal_length', 'min_petal_length', 'max_petal_length']
+```
+
+## Data visualization of sepal length vs sepal width of species
+
+Now, lets visualize the data! This will help us visualize if there are any notable differences in sepal length vs width of different Iris species. The code lines below are utilizing the **matlibplot** package to visualize the data. This data is a scatter plot with *sepal length* on the x-axis and *sepal width* on the y-axis, with the color of data points being differentiated by species Additionally, the graph is faceted by *species* of the penguins
+
+```{python}
+# Create colorblind friendly palette
+c_palette = ["#377eb8", "#ff7f00", "#4daf4a"]
+
+# Create plot
+iris_plot = sns.FacetGrid(iris, hue = "species", palette = c_palette)
+iris_plot.map(plt.scatter, "sepal_length_cm", "sepal_width_cm")
+
+# Add regression line
+iris_plot.map(sns.regplot, "sepal_length_cm", "sepal_width_cm", scatter = False)
+
+# Add legend
+iris_plot.add_legend(title="Iris Species:", frameon = True, facecolor = "lightgrey")
+
+# Fix labels
+iris_plot.set_axis_labels("Sepal Length (cm)", "Sepal Width (cm)")
+iris_plot.set_titles("Scatterplot with Linear Regression Lines by Species")
+
+# Show the plot
+plt.show()
+```

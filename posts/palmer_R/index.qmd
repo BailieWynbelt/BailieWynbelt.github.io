@@ -1,5 +1,5 @@
 ---
-title: "Palmer Penguin Analysis and Visualization"
+title: "R - Palmer Penguin Analysis and Visualization"
 author: "Bailie Wynbelt"
 date: "2023-03-25"
 categories: [R, Analysis, Visualization]
