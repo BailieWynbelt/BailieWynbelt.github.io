@@ -15,7 +15,7 @@ website:
 
 format:
   html:
-    theme: journal
+    theme: lux
     css: styles.css
     code-link: true
     code-fold: show
