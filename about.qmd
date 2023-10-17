@@ -1,5 +1,6 @@
 ---
 title: "About"
+image: aboutme.JPG
 about: 
   template: jolla
   image-shape: rounded
