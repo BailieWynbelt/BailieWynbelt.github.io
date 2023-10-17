@@ -1,17 +1,18 @@
 ---
 title: "About"
-image: outdoors.jpg
 about: 
   template: jolla
   image-shape: rounded
   image-width: 15em
 ---
 
-Welcome to my about page! I'm happy to have you here :) Currently, I am pursuing a Bachelor of Science in Information Science with an emphasis in Data Science at University of Arizona. I recently switched to Data Science from Natural Resources: Rangeland Management. For the Natural Resource major, I had to take a class surrounding ecological statistics and coding. I fell in love with the idea of combining data science and ecology. This is when I made the switch to Data Science!
-
-Currently, I am working for the School of Natural Resources and the Environment as a Data Science Research Assistant. This role holds many tasks for me and I have loved every minute of it. Firstly, I am helping conduct research with the overall goal of 1) determining diet selectivity within southwestern rodents and 2) the efficiency of primers in DNA metabarcoding to detect specific plant species. Secondly, I am a preceptor for an introductory data science course. I absolutely love assisting in this course and helping students gain deeper skills in coding and statistical analysis.
-
-In my work, I aim to create helpful analysis and creative data visualizations that can help solve ecological problems. I am also very interested in applying my skills to nonprofit and charity work!
+Hello, I'm Bailie! I'm currently pursuing a Bachelor of Science in Information Science with a focus in Data Science at the University of Arizona. I am deeply interested in the intersection of ecology and data science.\
+\
+My journey into data science began while I was studying Natural Resources. I took a class focused on statistics and coding with an emphasis on ecology. I fell in love with the idea of combining data science and ecology, leading me to make the switch to my current degree.\
+\
+My overall mission is to tackle challenging real-world problems by harnessing the power of data. My main skills fall in the realm of data wrangling, manipulation, analysis, visualization, and management in addition to front-end development with the overall goal of driving decision-making.\
+\
+In addition to my academic and professional endeavors, I strive for diversity and inclusion in the tech community, with a particular interest in the queer tech community. I believe in the importance of fostering an inclusive environment where everyone's talents and perspectives are valued!
 
 ```{r}
 
