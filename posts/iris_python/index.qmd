@@ -5,6 +5,7 @@ date: "2023-10-17"
 categories: [Python, Analysis, Visualization]
 image: "iris.jpg"
 format: html
+jupyter: python3
 ---
 I used the free Iris data set and python to conduct analysis and create visualizations
 
