@@ -12,6 +12,7 @@ The data consists of rodents samples that were collected in the southwest. The g
 
 This document shows the wrangling, update, and validation of the large data using the package Worldflora to find updated taxonomic names.
 
+It is important to note that the data will not be displayed in this document. The data is large and confidental. However, my code is still in the useable format and results in a dataset with updated taxonomic names and codes!
 
 Install and load packages.
 ```{r load packages}
