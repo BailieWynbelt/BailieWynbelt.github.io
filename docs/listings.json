@@ -1,8 +1,9 @@
 [
   {
-    "listing": "/projects.html",
+    "listing": "/posts.html",
     "items": [
-      "/posts/indexpost.html"
+      "/posts/iris_python/index.html",
+      "/posts/palmer_R/index.html"
     ]
   }
 ]

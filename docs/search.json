@@ -1,87 +1,10 @@
 [
   {
-    "objectID": "posts/indexpost.html",
-    "href": "posts/indexpost.html",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "",
-    "text": "I used the free Palmer Penguins data set in R to conduct analysis and create visualizations"
-  },
-  {
-    "objectID": "posts/indexpost.html#reading-tidyverse",
-    "href": "posts/indexpost.html#reading-tidyverse",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Reading tidyverse",
-    "text": "Reading tidyverse\nThe following lines of code is reading in the tidyverse package so specific functions can be used to analyze the data.\n\nCodelibrary(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.4.0      ✔ purrr   0.3.5 \n✔ tibble  3.1.8      ✔ dplyr   1.0.10\n✔ tidyr   1.2.1      ✔ stringr 1.4.1 \n✔ readr   2.1.3      ✔ forcats 0.5.2 \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()"
-  },
-  {
-    "objectID": "posts/indexpost.html#loading-in-the-palmer-penguin-data-set",
-    "href": "posts/indexpost.html#loading-in-the-palmer-penguin-data-set",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Loading in the palmer penguin data set",
-    "text": "Loading in the palmer penguin data set\n\nCodelibrary(palmerpenguins)\n\nWarning: package 'palmerpenguins' was built under R version 4.2.3\n\nCodepenguin_data <- penguins"
-  },
-  {
-    "objectID": "posts/indexpost.html#gaining-a-general-oversight-of-the-data",
-    "href": "posts/indexpost.html#gaining-a-general-oversight-of-the-data",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Gaining a general oversight of the data",
-    "text": "Gaining a general oversight of the data\nThe head() and tail() functions give a general oversight of what the data is comprised of in terms of rows and columns.\n\nCodehead(penguin_data)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year\n  <fct>   <fct>              <dbl>         <dbl>       <int>   <int> <fct> <int>\n1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007\n2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007\n3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007\n4 Adelie  Torgersen           NA            NA            NA      NA <NA>   2007\n5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007\n6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007\n# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g\n\nCodetail(penguin_data)\n\n# A tibble: 6 × 8\n  species   island bill_length_mm bill_depth_mm flipper_le…¹ body_…² sex    year\n  <fct>     <fct>           <dbl>         <dbl>        <int>   <int> <fct> <int>\n1 Chinstrap Dream            45.7          17            195    3650 fema…  2009\n2 Chinstrap Dream            55.8          19.8          207    4000 male   2009\n3 Chinstrap Dream            43.5          18.1          202    3400 fema…  2009\n4 Chinstrap Dream            49.6          18.2          193    3775 male   2009\n5 Chinstrap Dream            50.8          19            210    4100 male   2009\n6 Chinstrap Dream            50.2          18.7          198    3775 fema…  2009\n# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g"
-  },
-  {
-    "objectID": "posts/indexpost.html#data-analysis-of-islands",
-    "href": "posts/indexpost.html#data-analysis-of-islands",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Data analysis of islands",
-    "text": "Data analysis of islands\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by island, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called “island_penguin_summary”.\n\nCodeisland_penguin_summary <- clean_penguin_data %>%\n  group_by(island) %>%\n  summarize(mean_bill_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
-  },
-  {
-    "objectID": "posts/indexpost.html#data-analysis-of-sex",
-    "href": "posts/indexpost.html#data-analysis-of-sex",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Data analysis of sex",
-    "text": "Data analysis of sex\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by sex, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called “sex_penguin_summary”.\n\nCodesex_penguin_summary <- clean_penguin_data %>%\n  group_by(sex) %>%\n  summarize(mean_bill_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
-  },
-  {
-    "objectID": "posts/indexpost.html#data-analysis-of-species",
-    "href": "posts/indexpost.html#data-analysis-of-species",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Data analysis of species",
-    "text": "Data analysis of species\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by species, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called “species_penguin_summary”.\n\nCodespecies_penguin_summary <- clean_penguin_data %>%\n  group_by(species) %>%\n  summarize(bill_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
-  },
-  {
-    "objectID": "posts/indexpost.html#data-visualization-of-body-mass-vs-flipper-length-of-penguins",
-    "href": "posts/indexpost.html#data-visualization-of-body-mass-vs-flipper-length-of-penguins",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Data visualization of body mass vs flipper length of penguins",
-    "text": "Data visualization of body mass vs flipper length of penguins\nThe code lines below are utilizing the ggplot package to visualize the “clean_penguin_data”. This data is a scatter plot with body mass on the x-axis and flipper length on the y-axis, with the color of data points being differentiated by color. Additionally, the graph is facted by species of the penguins\n\nCodeggplot(data = clean_penguin_data,\n       mapping = aes(x = body_mass_g, \n                     y = flipper_length_mm,\n                     color = sex)) +\n  geom_point() +\n  facet_wrap(~species) +\n  labs(x = \"Body Mass of Penguins (g)\",\n       y = \"Flipper Length of Penguins (mm)\",\n       title = \"Body Mass (g) VS Flipper Length (mm) of Penguins\") +\n  theme(plot.title = element_text(hjust = 0.5))"
-  },
-  {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Palmer Penguin Analysis and Visualization\n\n\n\n\n\n\n\nR\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nMar 25, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/indexpost.html#data-tidying",
-    "href": "posts/indexpost.html#data-tidying",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Data tidying",
-    "text": "Data tidying\nThe following lines of code are tidying the “penguin_data” data set. The code is removing any values in the data set that have an NA and creating a new data set called “clean_penguin_data”\n\nCodeclean_penguin_data <- penguin_data %>%\n  drop_na()"
-  },
-  {
-    "objectID": "posts/indexpost.html#data-manipulation",
-    "href": "posts/indexpost.html#data-manipulation",
-    "title": "Palmer Penguin Analysis and Visualization",
-    "section": "Data manipulation",
-    "text": "Data manipulation\nThe following lines of code are manipulation the “clean_penguin_data” data set. The code is converting millimeters to centimeters, and grams to milligrams. New columns will be created in the clean_penguin_data\n\nCodeclean_penguin_data <- clean_penguin_data %>%\n  mutate(bill_length_cm = bill_length_mm/10,\n         bill_depth_cm = bill_depth_mm/10,\n         flipper_length_cm = flipper_length_mm/10,\n         body_mass_mg = body_mass_g/1000)"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Welcome to my about page! I’m happy to have you here :) Currently, I am pursuing a Bachelor of Science in Information Science with an emphasis in Data Science at University of Arizona. I recently switched to Data Science from Natural Resources: Rangeland Management. For the Natural Resource major, I had to take a class surrounding ecological statistics and coding. I fell in love with the idea of combining data science and ecology. This is when I made the switch to Data Science!\nCurrently, I am working for the School of Natural Resources and the Environment as a Data Science Research Assistant. This role holds many tasks for me and I have loved every minute of it. Firstly, I am helping conduct research with the overall goal of 1) determining diet selectivity within southwestern rodents and 2) the efficiency of primers in DNA metabarcoding to detect specific plant species. Secondly, I am a preceptor for an introductory data science course. I absolutely love assisting in this course and helping students gain deeper skills in coding and statistical analysis.\nIn my work, I aim to create helpful analysis and creative data visualizations that can help solve ecological problems. I am also very interested in applying my skills to nonprofit and charity work!"
+    "text": "Hello, I’m Bailie! I’m currently pursuing a Bachelor of Science in Information Science with a focus in Data Science at the University of Arizona. I am deeply interested in the intersection of ecology and data science.\nMy journey into data science began while I was studying Natural Resources. I took a class focused on statistics and coding with an emphasis on ecology. I fell in love with the idea of combining data science and ecology, leading me to make the switch to my current degree.\nMy overall mission is to tackle challenging real-world problems by harnessing the power of data. My main skills fall in the realm of data wrangling, manipulation, analysis, visualization, and management in addition to front-end development with the overall goal of driving decision-making.\nIn addition to my academic and professional endeavors, I strive for diversity and inclusion in the tech community, with a particular interest in the queer tech community. I believe in the importance of fostering an inclusive environment where everyone’s talents and perspectives are valued!"
   },
   {
     "objectID": "index.html",
@@ -102,13 +25,139 @@
     "href": "index.html#experience",
     "title": "Bailie Wynbelt",
     "section": "Experience",
-    "text": "Experience\nSchool of Natural Resources and the Environment | Data Science Research Assistant | January 2023 - present\nSchool of Natural Resources and the Environment ~ Ruyle Lab | Data Science Intern | August 2022 - December 2022"
+    "text": "Experience\nNational Phenology Network | Systems Assistant | October 2023 - present\nVirga Labs | Data Science Intern | May 2023 - September 2023\nSchool of Natural Resources and the Environment | Data Science Research Assistant | January 2023 - present\nSchool of Natural Resources and the Environment ~ Ruyle Lab | Data Science Intern | August 2022 - December 2022"
   },
   {
-    "objectID": "index.html#school-of-natural-resources-and-the-environment-ruyle-lab-data-science-intern-august-2022---december-2022",
-    "href": "index.html#school-of-natural-resources-and-the-environment-ruyle-lab-data-science-intern-august-2022---december-2022",
-    "title": "Bailie Wynbelt",
-    "section": "School of Natural Resources and the Environment ~ Ruyle Lab | Data Science Intern | August 2022 - December 2022",
-    "text": "School of Natural Resources and the Environment ~ Ruyle Lab | Data Science Intern | August 2022 - December 2022"
+    "objectID": "posts/iris_python/index.html",
+    "href": "posts/iris_python/index.html",
+    "title": "Python - Iris Analysis and Visualization",
+    "section": "",
+    "text": "I used the free Iris data set and python to conduct analysis and create visualizations"
+  },
+  {
+    "objectID": "posts/iris_python/index.html#importing-and-loading-required-packages",
+    "href": "posts/iris_python/index.html#importing-and-loading-required-packages",
+    "title": "Python - Iris Analysis and Visualization",
+    "section": "Importing and loading required packages",
+    "text": "Importing and loading required packages\nThe following code is importing both the pandas and matplotlib.pyplot package so specific functions can be used to analyze and visualize the data! Lets get started with exploring. It is important to note that these packages need to be installed first on your computer before you can run this\n\n\nCode\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns"
+  },
+  {
+    "objectID": "posts/iris_python/index.html#importing-iris-data-set",
+    "href": "posts/iris_python/index.html#importing-iris-data-set",
+    "title": "Python - Iris Analysis and Visualization",
+    "section": "Importing iris data set",
+    "text": "Importing iris data set\nThe iris data set is a free data set that is available! Below I am importing the data using the pd.read_csv function.\n\n\nCode\n# Create column names for dataframe\ncol_names = ['sepal_length_cm','sepal_width_cm','petal_length_cm','petal_width_cm','species']\n\n# Download data from url\ncsv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'\n\n# Import url using read_csv\niris = pd.read_csv(csv_url, names = col_names)"
+  },
+  {
+    "objectID": "posts/iris_python/index.html#gaining-a-general-oversight-of-the-data",
+    "href": "posts/iris_python/index.html#gaining-a-general-oversight-of-the-data",
+    "title": "Python - Iris Analysis and Visualization",
+    "section": "Gaining a general oversight of the data",
+    "text": "Gaining a general oversight of the data\nThe head() and tail() functions give a general oversight of what the data is comprised of in terms of rows and columns. Moreover, we can view the first and last 5 rows of data.\n\n\nCode\niris.head()\niris.tail()\n\n\n\n\n\n\n  \n    \n      \n      sepal_length_cm\n      sepal_width_cm\n      petal_length_cm\n      petal_width_cm\n      species\n    \n  \n  \n    \n      145\n      6.7\n      3.0\n      5.2\n      2.3\n      Iris-virginica\n    \n    \n      146\n      6.3\n      2.5\n      5.0\n      1.9\n      Iris-virginica\n    \n    \n      147\n      6.5\n      3.0\n      5.2\n      2.0\n      Iris-virginica\n    \n    \n      148\n      6.2\n      3.4\n      5.4\n      2.3\n      Iris-virginica\n    \n    \n      149\n      5.9\n      3.0\n      5.1\n      1.8\n      Iris-virginica\n    \n  \n\n\n\n\nGreat! Now we know what our data looks like. However, I want to make sure the data format is okay. To do so, I am going to confirm the data types of iris using the .dtypes. function. We can now see that the columns are all floats except the species column. This looks all good!\n\n\nCode\niris.dtypes\n\n\nsepal_length_cm    float64\nsepal_width_cm     float64\npetal_length_cm    float64\npetal_width_cm     float64\nspecies             object\ndtype: object"
+  },
+  {
+    "objectID": "posts/iris_python/index.html#data-tidying",
+    "href": "posts/iris_python/index.html#data-tidying",
+    "title": "Python - Iris Analysis and Visualization",
+    "section": "Data tidying",
+    "text": "Data tidying\nThe following lines of code are tidying the data set. The code is looking to see if the data set have any NA’s. We can now see that there is zero NA’s. This means we do not need to drop any rows.\n\n\nCode\niris.isna().sum().sum()\n\n\n0"
+  },
+  {
+    "objectID": "posts/iris_python/index.html#data-manipulation",
+    "href": "posts/iris_python/index.html#data-manipulation",
+    "title": "Python - Iris Analysis and Visualization",
+    "section": "Data manipulation",
+    "text": "Data manipulation\nThe following lines of code are manipulation the data set. The code is converting centimeters to millimeters. First, I created a function that converts from cm to mm and used .apply to apply to specific columns.\n\n\nCode\ndef cm_to_mm(cm):\n    return cm * 10\n\niris['sepal_length_mm'] = iris['sepal_length_cm'].apply(cm_to_mm)\niris['sepal_length_mm'] = iris['sepal_width_cm'].apply(cm_to_mm)\niris['petal_length_mm'] = iris['petal_length_cm'].apply(cm_to_mm)\n\niris\n\n\n\n\n\n\n  \n    \n      \n      sepal_length_cm\n      sepal_width_cm\n      petal_length_cm\n      petal_width_cm\n      species\n      sepal_length_mm\n      petal_length_mm\n    \n  \n  \n    \n      0\n      5.1\n      3.5\n      1.4\n      0.2\n      Iris-setosa\n      35.0\n      14.0\n    \n    \n      1\n      4.9\n      3.0\n      1.4\n      0.2\n      Iris-setosa\n      30.0\n      14.0\n    \n    \n      2\n      4.7\n      3.2\n      1.3\n      0.2\n      Iris-setosa\n      32.0\n      13.0\n    \n    \n      3\n      4.6\n      3.1\n      1.5\n      0.2\n      Iris-setosa\n      31.0\n      15.0\n    \n    \n      4\n      5.0\n      3.6\n      1.4\n      0.2\n      Iris-setosa\n      36.0\n      14.0\n    \n    \n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n    \n    \n      145\n      6.7\n      3.0\n      5.2\n      2.3\n      Iris-virginica\n      30.0\n      52.0\n    \n    \n      146\n      6.3\n      2.5\n      5.0\n      1.9\n      Iris-virginica\n      25.0\n      50.0\n    \n    \n      147\n      6.5\n      3.0\n      5.2\n      2.0\n      Iris-virginica\n      30.0\n      52.0\n    \n    \n      148\n      6.2\n      3.4\n      5.4\n      2.3\n      Iris-virginica\n      34.0\n      54.0\n    \n    \n      149\n      5.9\n      3.0\n      5.1\n      1.8\n      Iris-virginica\n      30.0\n      51.0\n    \n  \n\n150 rows × 7 columns"
+  },
+  {
+    "objectID": "posts/iris_python/index.html#data-analysis-of-species",
+    "href": "posts/iris_python/index.html#data-analysis-of-species",
+    "title": "Python - Iris Analysis and Visualization",
+    "section": "Data analysis of species",
+    "text": "Data analysis of species\nBelow are lines of code that are summarizing the data based on specific attributes. The following is grouping the data by flower species, and calculating the mean of sepal length, sepal width, and petal length. This data is added to a new data frame called “species_summary”. For the purpose of this question, we are only interested in using columns that contain data in cm.\n\n\nCode\nspecies_summary = iris.groupby('species').agg({\n    'sepal_length_cm': ['mean', 'min', 'max'],\n    'sepal_width_cm': ['mean', 'min', 'max'],\n    'petal_length_cm': ['mean', 'min', 'max']}).reset_index()\n\n\nspecies_summary.columns = ['species', \n'mean_sepal_length', 'min_sepal_length','max_sepal_length',\n'mean_sepal_width', 'min_sepal_width', 'max_sepal_width',\n'mean_petal_length', 'min_petal_length', 'max_petal_length']"
+  },
+  {
+    "objectID": "posts/iris_python/index.html#data-visualization-of-sepal-length-vs-sepal-width-of-species",
+    "href": "posts/iris_python/index.html#data-visualization-of-sepal-length-vs-sepal-width-of-species",
+    "title": "Python - Iris Analysis and Visualization",
+    "section": "Data visualization of sepal length vs sepal width of species",
+    "text": "Data visualization of sepal length vs sepal width of species\nNow, lets visualize the data! This will help us visualize if there are any notable differences in sepal length vs width of different Iris species. The code lines below are utilizing the matlibplot package to visualize the data. This data is a scatter plot with sepal length on the x-axis and sepal width on the y-axis, with the color of data points being differentiated by species Additionally, the graph is faceted by species of the penguins\n\n\nCode\n# Create colorblind friendly palette\nc_palette = [\"#377eb8\", \"#ff7f00\", \"#4daf4a\"]\n\n# Create plot\niris_plot = sns.FacetGrid(iris, hue = \"species\", palette = c_palette)\niris_plot.map(plt.scatter, \"sepal_length_cm\", \"sepal_width_cm\")\n\n# Add regression line\niris_plot.map(sns.regplot, \"sepal_length_cm\", \"sepal_width_cm\", scatter = False)\n\n# Add legend\niris_plot.add_legend(title=\"Iris Species:\", frameon = True, facecolor = \"lightgrey\")\n\n# Fix labels\niris_plot.set_axis_labels(\"Sepal Length (cm)\", \"Sepal Width (cm)\")\niris_plot.set_titles(\"Scatterplot with Linear Regression Lines by Species\")\n\n# Show the plot\nplt.show()"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html",
+    "href": "posts/palmer_R/index.html",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "",
+    "text": "I used the free Palmer Penguins data set in R to conduct analysis and create visualizations"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#reading-tidyverse",
+    "href": "posts/palmer_R/index.html#reading-tidyverse",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Reading tidyverse",
+    "text": "Reading tidyverse\nThe following lines of code is reading in the tidyverse package so specific functions can be used to analyze the data.\n\nCodelibrary(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.4.2      ✔ purrr   0.3.5 \n✔ tibble  3.1.8      ✔ dplyr   1.0.10\n✔ tidyr   1.2.1      ✔ stringr 1.4.1 \n✔ readr   2.1.3      ✔ forcats 0.5.2 \n\n\nWarning: package 'ggplot2' was built under R version 4.2.3\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#loading-in-the-palmer-penguin-data-set",
+    "href": "posts/palmer_R/index.html#loading-in-the-palmer-penguin-data-set",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Loading in the palmer penguin data set",
+    "text": "Loading in the palmer penguin data set\n\nCodelibrary(palmerpenguins)\n\nWarning: package 'palmerpenguins' was built under R version 4.2.3\n\nCodepenguin_data <- penguins"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#gaining-a-general-oversight-of-the-data",
+    "href": "posts/palmer_R/index.html#gaining-a-general-oversight-of-the-data",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Gaining a general oversight of the data",
+    "text": "Gaining a general oversight of the data\nThe head() and tail() functions give a general oversight of what the data is comprised of in terms of rows and columns.\n\nCodehead(penguin_data)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year\n  <fct>   <fct>              <dbl>         <dbl>       <int>   <int> <fct> <int>\n1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007\n2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007\n3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007\n4 Adelie  Torgersen           NA            NA            NA      NA <NA>   2007\n5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007\n6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007\n# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g\n\nCodetail(penguin_data)\n\n# A tibble: 6 × 8\n  species   island bill_length_mm bill_depth_mm flipper_le…¹ body_…² sex    year\n  <fct>     <fct>           <dbl>         <dbl>        <int>   <int> <fct> <int>\n1 Chinstrap Dream            45.7          17            195    3650 fema…  2009\n2 Chinstrap Dream            55.8          19.8          207    4000 male   2009\n3 Chinstrap Dream            43.5          18.1          202    3400 fema…  2009\n4 Chinstrap Dream            49.6          18.2          193    3775 male   2009\n5 Chinstrap Dream            50.8          19            210    4100 male   2009\n6 Chinstrap Dream            50.2          18.7          198    3775 fema…  2009\n# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#data-tidying",
+    "href": "posts/palmer_R/index.html#data-tidying",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Data tidying",
+    "text": "Data tidying\nThe following lines of code are tidying the “penguin_data” data set. The code is removing any values in the data set that have an NA and creating a new data set called “clean_penguin_data”\n\nCodeclean_penguin_data <- penguin_data %>%\n  drop_na()"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#data-manipulation",
+    "href": "posts/palmer_R/index.html#data-manipulation",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Data manipulation",
+    "text": "Data manipulation\nThe following lines of code are manipulation the “clean_penguin_data” data set. The code is converting millimeters to centimeters, and grams to milligrams. New columns will be created in the clean_penguin_data\n\nCodeclean_penguin_data <- clean_penguin_data %>%\n  mutate(bill_length_cm = bill_length_mm/10,\n         bill_depth_cm = bill_depth_mm/10,\n         flipper_length_cm = flipper_length_mm/10,\n         body_mass_mg = body_mass_g/1000)"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#data-analysis-of-islands",
+    "href": "posts/palmer_R/index.html#data-analysis-of-islands",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Data analysis of islands",
+    "text": "Data analysis of islands\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by island, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called “island_penguin_summary”.\n\nCodeisland_penguin_summary <- clean_penguin_data %>%\n  group_by(island) %>%\n  summarize(mean_bill_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#data-analysis-of-sex",
+    "href": "posts/palmer_R/index.html#data-analysis-of-sex",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Data analysis of sex",
+    "text": "Data analysis of sex\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by sex, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called “sex_penguin_summary”.\n\nCodesex_penguin_summary <- clean_penguin_data %>%\n  group_by(sex) %>%\n  summarize(mean_bill_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#data-analysis-of-species",
+    "href": "posts/palmer_R/index.html#data-analysis-of-species",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Data analysis of species",
+    "text": "Data analysis of species\nBelow are lines of code that are summarizing the “clean_penguin_data” based on specific attributes. The following is grouping the data by species, and calculating the mean of bill length, bill depth, flipper length, and body mass. This data is added to a new data frame called “species_penguin_summary”.\n\nCodespecies_penguin_summary <- clean_penguin_data %>%\n  group_by(species) %>%\n  summarize(bill_length_mm = mean(bill_length_mm),\n            mean_bill_depth_mm = mean(bill_depth_mm),\n            mean_flipper_length_mm = mean(flipper_length_mm),\n            mean_body_mass_g = mean(body_mass_g))"
+  },
+  {
+    "objectID": "posts/palmer_R/index.html#data-visualization-of-body-mass-vs-flipper-length-of-penguins",
+    "href": "posts/palmer_R/index.html#data-visualization-of-body-mass-vs-flipper-length-of-penguins",
+    "title": "R - Palmer Penguin Analysis and Visualization",
+    "section": "Data visualization of body mass vs flipper length of penguins",
+    "text": "Data visualization of body mass vs flipper length of penguins\nThe code lines below are utilizing the ggplot package to visualize the “clean_penguin_data”. This data is a scatter plot with body mass on the x-axis and flipper length on the y-axis, with the color of data points being differentiated by color. Additionally, the graph is facted by species of the penguins\n\nCodeggplot(data = clean_penguin_data,\n       mapping = aes(x = body_mass_g, \n                     y = flipper_length_mm,\n                     color = sex)) +\n  geom_point() +\n  facet_wrap(~species) +\n  labs(x = \"Body Mass of Penguins (g)\",\n       y = \"Flipper Length of Penguins (mm)\",\n       title = \"Body Mass (g) VS Flipper Length (mm) of Penguins\") +\n  theme(plot.title = element_text(hjust = 0.5))"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Python - Iris Analysis and Visualization\n\n\n\nPython\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\nBailie Wynbelt\n\n\nOct 17, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR - Palmer Penguin Analysis and Visualization\n\n\n\nR\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\nBailie Wynbelt\n\n\nMar 25, 2023\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
