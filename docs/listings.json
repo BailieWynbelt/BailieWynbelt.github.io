@@ -3,6 +3,7 @@
     "listing": "/posts.html",
     "items": [
       "/posts/iris_python/index.html",
+      "/posts/wrangling_R/index.html",
       "/posts/palmer_R/index.html"
     ]
   }
