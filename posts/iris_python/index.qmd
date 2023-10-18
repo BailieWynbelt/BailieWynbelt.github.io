@@ -7,6 +7,7 @@ image: "iris.jpg"
 format: html
 jupyter: python3
 ---
+
 I used the free Iris data set and python to conduct analysis and create visualizations
 
 ## Importing and loading required packages
@@ -20,7 +21,9 @@ import seaborn as sns
 ```
 
 ## Importing iris data set
+
 The iris data set is a free data set that is available! Below I am importing the data using the pd.read_csv function.
+
 ```{python}
 # Create column names for dataframe
 col_names = ['sepal_length_cm','sepal_width_cm','petal_length_cm','petal_width_cm','species']
@@ -41,10 +44,13 @@ The **head()** and **tail()** functions give a general oversight of what the dat
 iris.head()
 iris.tail()
 ```
+
 Great! Now we know what our data looks like. However, I want to make sure the data format is okay. To do so, I am going to confirm the data types of iris using the .dtypes. function. We can now see that the columns are all floats except the species column. This looks all good!
+
 ```{python}
 iris.dtypes
 ```
+
 ## Data tidying
 
 The following lines of code are tidying the data set. The code is looking to see if the data set have any NA's. We can now see that there is zero NA's. This means we do not need to drop any rows.
