@@ -17,9 +17,5 @@ format:
   html:
     theme: zephyr
     css: styles.css
-    code-link: true
-    code-fold: show
-    code-tools: true
-    code-block-border-left: "green"
 
 editor: visual
