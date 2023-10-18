@@ -15,7 +15,7 @@ website:
 
 format:
   html:
-    theme: lux
+    theme: zephyr
     css: styles.css
     code-link: true
     code-fold: show
