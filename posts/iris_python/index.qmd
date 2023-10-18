@@ -12,7 +12,7 @@ I used the free Iris data set and python to conduct analysis and create visualiz
 
 ## Importing and loading required packages
 
-The following code is importing both the pandas and matplotlib.pyplot package so specific functions can be used to analyze and visualize the data! Lets get started with exploring. It is important to note that these packages need to be installed first on your computer before you can run this
+The following code is importing both the pandas and matplotlib.pyplot package so specific functions can be used to analyze and visualize the data! Lets get started with exploring. It is important to note that these packages need to be installed first on your computer before you can run this.
 
 ```{python}
 import pandas as pd
@@ -40,12 +40,16 @@ iris = pd.read_csv(csv_url, names = col_names)
 
 The **head()** and **tail()** functions give a general oversight of what the data is comprised of in terms of rows and columns. Moreover, we can view the first and last 5 rows of data.
 
+Lets view the first 5 rows of data: 
 ```{python}
 iris.head()
-iris.tail()
 ```
 
-Great! Now we know what our data looks like. However, I want to make sure the data format is okay. To do so, I am going to confirm the data types of iris using the .dtypes. function. We can now see that the columns are all floats except the species column. This looks all good!
+Now, lets view the last 5 rows of data:
+```{python}
+iris.tail()
+```
+Great! Now we know what our data looks like and the column names. However, I want to make sure the data format is okay. To do so, I am going to confirm the data types of iris using the .dtypes. function. We can now see that the columns are all floats except the species column. This looks all good!
 
 ```{python}
 iris.dtypes
