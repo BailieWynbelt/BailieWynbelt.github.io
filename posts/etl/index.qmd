@@ -6,7 +6,7 @@ categories: [Python, SQL, AWS, Validation]
 image: "etl.png"
 format: html
 ---
-What can I say... I LOVE THE ETL PROCESS. It is so fun and groovy. This document contains code that was written for my data engineering class. Some of the code was provided by the professor - however it is noted when the code was not written by me. 
+The ETL (Extract, Transform, and Load), is a useful process for taking unuseable data and making it useable! This document contains code that was written for my data engineering class. Some of the code was provided by the professor - however it is noted when the code was not written by me. 
 
 The goal of this homework was to take a semi-structured non-normalized CSV file and turn it into a set of normalized tables that was then pushed to a **postgres** database hosted on **AWS**. Throughout the homework, I created a **database schema** and created tables with primary and foreign keys within the database. The database contains tables cases, judges, and casetype. These tables contain information about judge name, political party, gender, race, case year, casetype, etc. 
 
