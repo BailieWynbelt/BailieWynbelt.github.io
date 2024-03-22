@@ -211,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>What can I say… I LOVE THE ETL PROCESS. It is so fun and groovy. This document contains code that was written for my data engineering class. Some of the code was provided by the professor - however it is noted when the code was not written by me.</p>
+<p>The ETL (Extract, Transform, and Load), is a useful process for taking unuseable data and making it useable! This document contains code that was written for my data engineering class. Some of the code was provided by the professor - however it is noted when the code was not written by me.</p>
 <p>The goal of this homework was to take a semi-structured non-normalized CSV file and turn it into a set of normalized tables that was then pushed to a <strong>postgres</strong> database hosted on <strong>AWS</strong>. Throughout the homework, I created a <strong>database schema</strong> and created tables with primary and foreign keys within the database. The database contains tables cases, judges, and casetype. These tables contain information about judge name, political party, gender, race, case year, casetype, etc.</p>
 <p>This data could be used for a wide range of uses. For example, analysts could use the final summary table (that is created at the end of this document) to look at how political party inpacts court decisions.</p>
 <section id="bring-in-data-and-explore." class="level2">
@@ -393,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="make-a-rollup-table" class="level2">
 <h2 class="anchored" data-anchor-id="make-a-rollup-table">Make a rollup table</h2>
-<p>The process used to create the cases table is the same process that was used to create the other connecting tables (judges and casetype). To avoid repition, I will be skipping this code. However, I will be using the remaining code that was written. This has the goal of creating a summary table analysts could use to look at case decisions and political party type.</p>
+<p>The process used to create the cases table is the same process that was used to create the other connecting tables (judges and casetype). To avoid repetition, I will be skipping this code. However, I will be using the remaining code that was written. This has the goal of creating a summary table analysts could use to look at case decisions and political party type.</p>
 <p>First, I made a groupby called cases_rollup. This groups by party_name and category name and aggregates the count and sum of libcon_id.</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cases_rollup <span class="op">=</span> cases.groupby([<span class="st">'category_name'</span>, <span class="st">'party_name'</span>])[<span class="st">'libcon_id'</span>].agg([<span class="st">'sum'</span>, <span class="st">'count'</span>]).reset_index()</span>
@@ -401,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>cases_rollup.reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>#Rename columns to be consistant with new values.</p>
+<p>#Rename columns to be consistent with new values.</p>
 <div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename your columns now. Keep the first to the same but call the last two 'total_cases' and 'num_lib_decisions'</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cases_rollup.rename(columns<span class="op">=</span>{<span class="st">'sum'</span>: <span class="st">'num_lib_decisions'</span>, <span class="st">'count'</span>: <span class="st">'total_cases'</span>}, inplace <span class="op">=</span> <span class="va">True</span>)</span>

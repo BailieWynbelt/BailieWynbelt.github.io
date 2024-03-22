@@ -32,7 +32,7 @@
     "href": "posts/etl/index.html",
     "title": "ETL: Extract, Transform, Load",
     "section": "",
-    "text": "What can I say… I LOVE THE ETL PROCESS. It is so fun and groovy. This document contains code that was written for my data engineering class. Some of the code was provided by the professor - however it is noted when the code was not written by me.\nThe goal of this homework was to take a semi-structured non-normalized CSV file and turn it into a set of normalized tables that was then pushed to a postgres database hosted on AWS. Throughout the homework, I created a database schema and created tables with primary and foreign keys within the database. The database contains tables cases, judges, and casetype. These tables contain information about judge name, political party, gender, race, case year, casetype, etc.\nThis data could be used for a wide range of uses. For example, analysts could use the final summary table (that is created at the end of this document) to look at how political party inpacts court decisions."
+    "text": "The ETL (Extract, Transform, and Load), is a useful process for taking unuseable data and making it useable! This document contains code that was written for my data engineering class. Some of the code was provided by the professor - however it is noted when the code was not written by me.\nThe goal of this homework was to take a semi-structured non-normalized CSV file and turn it into a set of normalized tables that was then pushed to a postgres database hosted on AWS. Throughout the homework, I created a database schema and created tables with primary and foreign keys within the database. The database contains tables cases, judges, and casetype. These tables contain information about judge name, political party, gender, race, case year, casetype, etc.\nThis data could be used for a wide range of uses. For example, analysts could use the final summary table (that is created at the end of this document) to look at how political party inpacts court decisions."
   },
   {
     "objectID": "posts/etl/index.html#bring-in-data-and-explore.",
@@ -60,63 +60,63 @@
     "href": "posts/etl/index.html#make-a-rollup-table",
     "title": "ETL: Extract, Transform, Load",
     "section": "Make a rollup table",
-    "text": "Make a rollup table\nThe process used to create the cases table is the same process that was used to create the other connecting tables (judges and casetype). To avoid repition, I will be skipping this code. However, I will be using the remaining code that was written. This has the goal of creating a summary table analysts could use to look at case decisions and political party type.\nFirst, I made a groupby called cases_rollup. This groups by party_name and category name and aggregates the count and sum of libcon_id.\n\ncases_rollup = cases.groupby(['category_name', 'party_name'])['libcon_id'].agg(['sum', 'count']).reset_index()\ncases_rollup\n\ncases_rollup.reset_index()\n\n#Rename columns to be consistant with new values.\n\n# rename your columns now. Keep the first to the same but call the last two 'total_cases' and 'num_lib_decisions'\ncases_rollup.rename(columns={'sum': 'num_lib_decisions', 'count': 'total_cases'}, inplace = True)\ncases_rollup\n\nNow, I created a new column called ‘percent_liberal’. This calculates the percentage of decisions that were liberal in nature.\n\ncases_rollup['percent_liberal'] = round((cases_rollup['num_lib_decisions'] / cases_rollup['total_cases']) * 100)\ncases_rollup"
+    "text": "Make a rollup table\nThe process used to create the cases table is the same process that was used to create the other connecting tables (judges and casetype). To avoid repetition, I will be skipping this code. However, I will be using the remaining code that was written. This has the goal of creating a summary table analysts could use to look at case decisions and political party type.\nFirst, I made a groupby called cases_rollup. This groups by party_name and category name and aggregates the count and sum of libcon_id.\n\ncases_rollup = cases.groupby(['category_name', 'party_name'])['libcon_id'].agg(['sum', 'count']).reset_index()\ncases_rollup\n\ncases_rollup.reset_index()\n\n#Rename columns to be consistent with new values.\n\n# rename your columns now. Keep the first to the same but call the last two 'total_cases' and 'num_lib_decisions'\ncases_rollup.rename(columns={'sum': 'num_lib_decisions', 'count': 'total_cases'}, inplace = True)\ncases_rollup\n\nNow, I created a new column called ‘percent_liberal’. This calculates the percentage of decisions that were liberal in nature.\n\ncases_rollup['percent_liberal'] = round((cases_rollup['num_lib_decisions'] / cases_rollup['total_cases']) * 100)\ncases_rollup"
   },
   {
     "objectID": "posts/iris_python/index.html",
     "href": "posts/iris_python/index.html",
-    "title": "Python - Iris Analysis and Visualization",
+    "title": "Python Data Wrangling Workshop",
     "section": "",
-    "text": "I used the free Iris data set and python to conduct analysis and create visualizations"
+    "text": "The following is a workshop that I created to teach beginner programmers an introduction to data wrangling in Python using Pandas!"
   },
   {
-    "objectID": "posts/iris_python/index.html#importing-and-loading-required-packages",
-    "href": "posts/iris_python/index.html#importing-and-loading-required-packages",
-    "title": "Python - Iris Analysis and Visualization",
-    "section": "Importing and loading required packages",
-    "text": "Importing and loading required packages\nThe following code is importing both the pandas and matplotlib.pyplot package so specific functions can be used to analyze and visualize the data! Lets get started with exploring. It is important to note that these packages need to be installed first on your computer before you can run this\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns"
+    "objectID": "posts/iris_python/index.html#data-science-more-fun-less-pain",
+    "href": "posts/iris_python/index.html#data-science-more-fun-less-pain",
+    "title": "Python Data Wrangling Workshop",
+    "section": "Data Science: more fun, less pain",
+    "text": "Data Science: more fun, less pain\nBut wait…you might be wondering what is pandas and how can we use it in Data Science?\nPython is a dynamic language that can be used for a variety of problems these ranging from Software Enginnering to Data Science. Today, we are going to focus on how to use Python, specifically the pandas package, to wrangle, analyze, and visualize data. The pandas package is a collection of functions that allows us to easily manipulate, summarize, and visualize data. In this lesson, we will use the pandas package and the iris dataset to wrangle data, create summary statistics, and develop appealing visualizations.\n\nDescriptive statisitcs and visualization with pandas\nBailie Wynbelt\nwynbeltb@arizona.edu\n2024-02-04\n\n\n#import statements\nimport pandas as pd\n\nimport numpy as np\n\nfrom plotnine import *\n\nNow that we have imported all the required packages, we can read in the data.\nTo do this we will use the read_csv() function from pandas\n\n#import iris data set\n#This is a dataframe, meaning it is a two-dimentional structure.\ncsv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data' #get csv url\n\niris =  pd.read_csv(csv_url, names = ['sepal_length','sepal_width','petal_length','petal_width','species'])\n\niris"
   },
   {
-    "objectID": "posts/iris_python/index.html#importing-iris-data-set",
-    "href": "posts/iris_python/index.html#importing-iris-data-set",
-    "title": "Python - Iris Analysis and Visualization",
-    "section": "Importing iris data set",
-    "text": "Importing iris data set\nThe iris data set is a free data set that is available! Below I am importing the data using the pd.read_csv function.\n\n# Create column names for dataframe\ncol_names = ['sepal_length_cm','sepal_width_cm','petal_length_cm','petal_width_cm','species']\n\n# Download data from url\ncsv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'\n\n# Import url using read_csv\niris = pd.read_csv(csv_url, names = col_names)"
+    "objectID": "posts/iris_python/index.html#explore-the-data",
+    "href": "posts/iris_python/index.html#explore-the-data",
+    "title": "Python Data Wrangling Workshop",
+    "section": "Explore the Data",
+    "text": "Explore the Data\nWe have imported the pandas package and the dataset! Now we can start exploring the dataset and working on summarizing the data.\nSome of my favorite ways of exploring the dataset include the following:\n\n#Gives the number of rows and columns in the format (rows, columns)\niris.shape()\n\n\n#Shows the name ofthe column, number of non-null values, and the datatype.\niris.info()\n\n\n#Returns the first 5 rows\niris.head()\n\n\n#Returns the last 5 rows\niris.tail()\n\nWe have imported the pandas package/dataset and have explored the data! Now we can start working on summarizing the data."
   },
   {
-    "objectID": "posts/iris_python/index.html#gaining-a-general-oversight-of-the-data",
-    "href": "posts/iris_python/index.html#gaining-a-general-oversight-of-the-data",
-    "title": "Python - Iris Analysis and Visualization",
-    "section": "Gaining a general oversight of the data",
-    "text": "Gaining a general oversight of the data\nThe head() and tail() functions give a general oversight of what the data is comprised of in terms of rows and columns. Moreover, we can view the first and last 5 rows of data.\n\niris.head()\niris.tail()\n\n\n\n\n\n  \n    \n      \n      sepal_length_cm\n      sepal_width_cm\n      petal_length_cm\n      petal_width_cm\n      species\n    \n  \n  \n    \n      145\n      6.7\n      3.0\n      5.2\n      2.3\n      Iris-virginica\n    \n    \n      146\n      6.3\n      2.5\n      5.0\n      1.9\n      Iris-virginica\n    \n    \n      147\n      6.5\n      3.0\n      5.2\n      2.0\n      Iris-virginica\n    \n    \n      148\n      6.2\n      3.4\n      5.4\n      2.3\n      Iris-virginica\n    \n    \n      149\n      5.9\n      3.0\n      5.1\n      1.8\n      Iris-virginica\n    \n  \n\n\n\n\nGreat! Now we know what our data looks like. However, I want to make sure the data format is okay. To do so, I am going to confirm the data types of iris using the .dtypes. function. We can now see that the columns are all floats except the species column. This looks all good!\n\niris.dtypes\n\nsepal_length_cm    float64\nsepal_width_cm     float64\npetal_length_cm    float64\npetal_width_cm     float64\nspecies             object\ndtype: object"
+    "objectID": "posts/iris_python/index.html#summarizing-the-data",
+    "href": "posts/iris_python/index.html#summarizing-the-data",
+    "title": "Python Data Wrangling Workshop",
+    "section": "Summarizing the data",
+    "text": "Summarizing the data\nHow can we create descriptive statistics for the iris dataset? -Means -Standard errors -For each trait -For each species\n\n#Quick statisitic summary of data\niris.describe()\n\n\n#Find the mean of sepal length for all species\niris_mean = iris[\"sepal_length\"].mean()\n\niris_mean\n\n\n#Find the standard deviation of sepal length for all species\niris_std = iris[\"sepal_length\"].std()\n\niris_std\n\nWe have found the mean and standard deviation for sepal_length. However, there are also different species, so what if there are differences in traits between species?\nTo explore this question we can use the groupby function.\n\n#find the mean for each species for each trait (column)\niris_mean = iris.groupby('species').mean()\n\niris_mean\n\nWhat if we also want to find the standard deviation for each trait for each species?\nWe can use the agg function alongside the groupby function.\n\n#find the mean and standard deviation for each species for each trait (column)\niris_stats = iris.groupby('species').agg(['mean', 'std'])\n\niris_stats\n\nGreat! Now we have a descriptive statistics for all species and traits. Similar steps can be taken if you just want to find descriptive statistics for one column or trait. Lets explore how to do this below.\n\n#find the mean per species for sepal length\niris_mean = iris.groupby('species')['sepal_length'].mean()\n\niris_mean\n\n\n#find the mean and standard deviation for sepal length of each species\niris_stats = iris.groupby('species')['sepal_length'].agg(['mean', 'std'])\n\niris_stats"
   },
   {
-    "objectID": "posts/iris_python/index.html#data-tidying",
-    "href": "posts/iris_python/index.html#data-tidying",
-    "title": "Python - Iris Analysis and Visualization",
-    "section": "Data tidying",
-    "text": "Data tidying\nThe following lines of code are tidying the data set. The code is looking to see if the data set have any NA’s. We can now see that there is zero NA’s. This means we do not need to drop any rows.\n\niris.isna().sum().sum()\n\n0"
+    "objectID": "posts/iris_python/index.html#plotting-data",
+    "href": "posts/iris_python/index.html#plotting-data",
+    "title": "Python Data Wrangling Workshop",
+    "section": "Plotting Data",
+    "text": "Plotting Data\nSo far we have:\n\nread the data\nexplored the data\ncreated descriptive statistics\n\nWe are now read to visualize the data! In R, people commonly use ggplot2 to visualize datasets. In python, we will use plot9 which essentially functions similarly to ggplot2 and outputs similar visualizations\nFirst, we need to create a general plot and then state what type of plot we want.\nWe are going to create a scatterplot displaying sepal length on the x-axis and sepal width on the y-axis.\n\n(ggplot(iris, aes(x = \"sepal_length\", y = \"sepal_width\")) \n+ geom_point())\n\nIt looks like there is two distinct groupings within our scatterplot, lets explore this more by adding an extra argument into the aes() function.\n\n(ggplot(iris, aes(x = \"sepal_length\", y = \"sepal_width\", color = \"species\")) \n+ geom_point())\n\nLastly, we can better visualize the differences between species by faceting and creating a linear model. This can be done by adding the facet_wrap and stat_smooth argument.\nA facet wrap is dividing the graph into sections based on a particular variable. In our case, it is species.\nLastly, we can beautify the graph by adding labels and a title.\n\n(ggplot(iris, aes(x = \"sepal_length\", \n                  y = \"sepal_width\", \n                  color = \"species\")) +\n        geom_point() +\n        facet_wrap(\"~species\") +\n        stat_smooth(method = \"lm\", color = \"black\") +\n        labs(x = \"Sepal Legnth\",\n            y = \"Sepal Width\",\n            title = \"Sepal Length VS Sepal Width of Iris Species\"))"
   },
   {
-    "objectID": "posts/iris_python/index.html#data-manipulation",
-    "href": "posts/iris_python/index.html#data-manipulation",
-    "title": "Python - Iris Analysis and Visualization",
-    "section": "Data manipulation",
-    "text": "Data manipulation\nThe following lines of code are manipulation the data set. The code is converting centimeters to millimeters. First, I created a function that converts from cm to mm and used .apply to apply to specific columns.\n\ndef cm_to_mm(cm):\n    return cm * 10\n\niris['sepal_length_mm'] = iris['sepal_length_cm'].apply(cm_to_mm)\niris['sepal_length_mm'] = iris['sepal_width_cm'].apply(cm_to_mm)\niris['petal_length_mm'] = iris['petal_length_cm'].apply(cm_to_mm)\n\niris\n\n\n\n\n\n  \n    \n      \n      sepal_length_cm\n      sepal_width_cm\n      petal_length_cm\n      petal_width_cm\n      species\n      sepal_length_mm\n      petal_length_mm\n    \n  \n  \n    \n      0\n      5.1\n      3.5\n      1.4\n      0.2\n      Iris-setosa\n      35.0\n      14.0\n    \n    \n      1\n      4.9\n      3.0\n      1.4\n      0.2\n      Iris-setosa\n      30.0\n      14.0\n    \n    \n      2\n      4.7\n      3.2\n      1.3\n      0.2\n      Iris-setosa\n      32.0\n      13.0\n    \n    \n      3\n      4.6\n      3.1\n      1.5\n      0.2\n      Iris-setosa\n      31.0\n      15.0\n    \n    \n      4\n      5.0\n      3.6\n      1.4\n      0.2\n      Iris-setosa\n      36.0\n      14.0\n    \n    \n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n      ...\n    \n    \n      145\n      6.7\n      3.0\n      5.2\n      2.3\n      Iris-virginica\n      30.0\n      52.0\n    \n    \n      146\n      6.3\n      2.5\n      5.0\n      1.9\n      Iris-virginica\n      25.0\n      50.0\n    \n    \n      147\n      6.5\n      3.0\n      5.2\n      2.0\n      Iris-virginica\n      30.0\n      52.0\n    \n    \n      148\n      6.2\n      3.4\n      5.4\n      2.3\n      Iris-virginica\n      34.0\n      54.0\n    \n    \n      149\n      5.9\n      3.0\n      5.1\n      1.8\n      Iris-virginica\n      30.0\n      51.0\n    \n  \n\n150 rows × 7 columns"
+    "objectID": "posts/iris_python/index.html#explore-the-dataset",
+    "href": "posts/iris_python/index.html#explore-the-dataset",
+    "title": "Python Data Wrangling Workshop",
+    "section": "Explore the dataset",
+    "text": "Explore the dataset\nEmploy one or two of the exploratory functions we used before. Use which ever ones are your favorite!\n\n#explore the data\npenguins.head()\n\n\npenguins.tail()\n\n\npenguins.describe()"
   },
   {
-    "objectID": "posts/iris_python/index.html#data-analysis-of-species",
-    "href": "posts/iris_python/index.html#data-analysis-of-species",
-    "title": "Python - Iris Analysis and Visualization",
-    "section": "Data analysis of species",
-    "text": "Data analysis of species\nBelow are lines of code that are summarizing the data based on specific attributes. The following is grouping the data by flower species, and calculating the mean of sepal length, sepal width, and petal length. This data is added to a new data frame called “species_summary”. For the purpose of this question, we are only interested in using columns that contain data in cm.\n\nspecies_summary = iris.groupby('species').agg({\n    'sepal_length_cm': ['mean', 'min', 'max'],\n    'sepal_width_cm': ['mean', 'min', 'max'],\n    'petal_length_cm': ['mean', 'min', 'max']}).reset_index()\n\n\nspecies_summary.columns = ['species', \n'mean_sepal_length', 'min_sepal_length','max_sepal_length',\n'mean_sepal_width', 'min_sepal_width', 'max_sepal_width',\n'mean_petal_length', 'min_petal_length', 'max_petal_length']"
+    "objectID": "posts/iris_python/index.html#find-descriptive-statistics",
+    "href": "posts/iris_python/index.html#find-descriptive-statistics",
+    "title": "Python Data Wrangling Workshop",
+    "section": "Find Descriptive Statistics",
+    "text": "Find Descriptive Statistics\nWe want to find descriptive statistics for the dataset! For your challenge, find the mean and standard deviation of the “body_mass_g” column per species\n\npenguins_stats = penguins.groupby('species')['body_mass_g'].agg(['mean', 'std'])\n\npenguins_stats"
   },
   {
-    "objectID": "posts/iris_python/index.html#data-visualization-of-sepal-length-vs-sepal-width-of-species",
-    "href": "posts/iris_python/index.html#data-visualization-of-sepal-length-vs-sepal-width-of-species",
-    "title": "Python - Iris Analysis and Visualization",
-    "section": "Data visualization of sepal length vs sepal width of species",
-    "text": "Data visualization of sepal length vs sepal width of species\nNow, lets visualize the data! This will help us visualize if there are any notable differences in sepal length vs width of different Iris species. The code lines below are utilizing the matlibplot package to visualize the data. This data is a scatter plot with sepal length on the x-axis and sepal width on the y-axis, with the color of data points being differentiated by species Additionally, the graph is faceted by species of the penguins\n\n# Create colorblind friendly palette\nc_palette = [\"#377eb8\", \"#ff7f00\", \"#4daf4a\"]\n\n# Create plot\niris_plot = sns.FacetGrid(iris, hue = \"species\", palette = c_palette)\niris_plot.map(plt.scatter, \"sepal_length_cm\", \"sepal_width_cm\")\n\n# Add regression line\niris_plot.map(sns.regplot, \"sepal_length_cm\", \"sepal_width_cm\", scatter = False)\n\n# Add legend\niris_plot.add_legend(title=\"Iris Species:\", frameon = True, facecolor = \"lightgrey\")\n\n# Fix labels\niris_plot.set_axis_labels(\"Sepal Length (cm)\", \"Sepal Width (cm)\")\niris_plot.set_titles(\"Scatterplot with Linear Regression Lines by Species\")\n\n# Show the plot\nplt.show()"
+    "objectID": "posts/iris_python/index.html#visualization",
+    "href": "posts/iris_python/index.html#visualization",
+    "title": "Python Data Wrangling Workshop",
+    "section": "Visualization",
+    "text": "Visualization\nFor your next challenge… try creating a visualization that displays body mass on the x-axis vs flipper length on the y-axis with color differentiated by sex (color in the aes() argument) and the graph faceted by species. Add labels that you see fit to the graph.\nSteps to be taken 1) Create a scatterplot (geom_point) with “body_mass_g” on the x-axis and “flipper_length_mm” on the y-axis. Don’t forgot to add aes(color = ) set to “sex” ! 2) Add a facet_wrap by “species” 3) Add labels with the labs() argument\n\npenguins_stats = penguins.groupby('species')['body_mass_g'].agg(['mean', 'std'])\n\npenguins_stats"
   },
   {
     "objectID": "posts/palmer_R/index.html",
@@ -200,6 +200,6 @@
     "href": "posts.html",
     "title": "Projects",
     "section": "",
-    "text": "ETL: Extract, Transform, Load\n\n\n\n\n\n\n\nPython\n\n\nSQL\n\n\nAWS\n\n\nValidation\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nPython Data Wrangling Workshop\n\n\n\n\n\n\n\nPython\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nData Wrangling, Updates, and Validation\n\n\n\n\n\n\n\nR\n\n\nWrangling\n\n\nValidation\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nR - Palmer Penguin Analysis and Visualization\n\n\n\n\n\n\n\nR\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nMar 25, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\nNo matching items"
+    "text": "Python Data Wrangling Workshop\n\n\n\n\n\n\n\nPython\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nFeb 3, 2024\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nETL: Extract, Transform, Load\n\n\n\n\n\n\n\nPython\n\n\nSQL\n\n\nAWS\n\n\nValidation\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nData Wrangling, Updates, and Validation\n\n\n\n\n\n\n\nR\n\n\nWrangling\n\n\nValidation\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nR - Palmer Penguin Analysis and Visualization\n\n\n\n\n\n\n\nR\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nMar 25, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\nNo matching items"
   }
 ]

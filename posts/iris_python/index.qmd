@@ -1,7 +1,7 @@
 ---
 title: "Python Data Wrangling Workshop"
 author: "Bailie Wynbelt"
-date: "2023-10-17"
+date: "2024-2-3"
 categories: [Python, Analysis, Visualization]
 image: "iris.jpg"
 format: html
