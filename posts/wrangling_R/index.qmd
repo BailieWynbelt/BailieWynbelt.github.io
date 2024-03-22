@@ -6,32 +6,37 @@ categories: [R, Wrangling, Validation]
 image: "flora.jpg"
 format: html
 ---
-The following code is a representation of my work in School of Natural Resources. I was using data that was collected in 2017 and we wanted to run new analyses. 
 
-The data consists of rodents samples that were collected in the southwest. The goal of this data was to display what rodents are eating and how they are diet partitioning. 
+The following code is a representation of my work in School of Natural Resources. I was using data that was collected in 2017 and we wanted to run new analyses.
+
+The data consists of rodents samples that were collected in the southwest. The goal of this data was to display what rodents are eating and how they are diet partitioning.
 
 This document shows the wrangling, update, and validation of the large data using the package Worldflora to find updated taxonomic names.
 
-It is important to note that the data will not be displayed in this document. The data is large and confidental. However, my code is still in the useable format and results in a dataset with updated taxonomic names and codes!
+It is important to note that the data will not be displayed in this document. The data is large and confidential. However, my code is still in the usable format and results in a dataset with updated taxonomic names and codes!
 
 Install and load packages.
+
 ```{r load packages}
 library(WorldFlora)
 library(tidyverse)
 ```
 
 Download and remember WFO data.
+
 ```{r WFO remember}
 #WFO.download()
 #WFO.remember(WFO.file = "classification.csv")
 ```
 
 Read in trnL data.
+
 ```{r read data}
 #trnL_plants <- read_csv("../data/sequenced/trnL_reads_WeeTU.csv")
 ```
 
 Find name issues in trnL data - this includes species with Authorship or other rows with strange names.
+
 ```{r create csv of bad names}
 trnL_name_issues <- trnL_plants %>% 
    distinct(Species) %>% 
@@ -42,13 +47,15 @@ trnL_name_issues <- trnL_plants %>%
 #write_csv(trnL_name_issues, "../outputs/naming_issues/trnL_name_issues.csv")
 ```
 
-Replace "_" with a space with gsub - see comment below.
+Replace "\_" with a space with gsub - see comment below.
+
 ```{r gsub}
 #not required to run but here for another example of how to replace characters
 trnL_plants$Species <- gsub("_"," ", trnL_plants$Species)
 ```
 
 Fix naming issues - see comment below. This code was kept as an example of how to update plant names. However this is an extremely long and time consuming way to mutate the data.
+
 ```{r fix bad names}
 #do not run - here just to keep - old code
 trnL_plants <- trnL_plants %>% 
@@ -90,6 +97,7 @@ trnL_plants <- trnL_plants %>%
 ```
 
 Replace names only identified to species level with an "NA" in the "Species" column.
+
 ```{r change to NA}
 trnL_plants <- trnL_plants %>% 
   mutate(Species = str_replace_all(Species, "_", " ")) %>% 
@@ -131,6 +139,7 @@ trnL_plants <- trnL_plants %>%
 ```
 
 Select only the distinct values in the "Species" column, and remove NAs/names that are not essential based on trnL_name_issues.csv file for WFO.match().
+
 ```{r manipulate data}
 trnL_plant_species <- trnL_plants %>% 
   filter(Species != "NA") %>% 
@@ -139,6 +148,7 @@ trnL_plant_species <- trnL_plants %>%
 ```
 
 Convert to data frame so WFO.match can run properly.
+
 ```{r save as data frame}
 # need to convert trnL_plant_species from a tibble to a dataframe
 trnL_plant_species <- as.data.frame(trnL_plant_species)
@@ -146,6 +156,7 @@ trnL_plant_species <- as.data.frame(trnL_plant_species)
 ```
 
 Match trnL data with WFO data. WFO will match your data set with out of data names. Specifically it will add a new column of updated authorship, genus, etc.
+
 ```{r WFO match}
 trnL_plant_match <- WFO.match(spec.data = trnL_plant_species, 
                                WFO.data = WFO.data,
@@ -168,11 +179,13 @@ trnL_plant_match <- WFO.match(spec.data = trnL_plant_species,
 ```
 
 Write csv for plant matches and save to outputs folder. This file contains all plants that had a "match" with the WFO data. Otherwise, this means that the original plant name is outdated.
+
 ```{r write_csv}
 #write_csv(trnL_plant_match, "../outputs/trnL_plant_match.csv")
 ```
 
 Select plants that had fuzzy values and select needed columns from WFO.match data output.
+
 ```{r select data}
 fuzzy_plants_trnL <- trnL_plant_match %>% 
   filter(Fuzzy == 'TRUE') %>% 
@@ -188,6 +201,7 @@ fuzzy_plants_trnL <- trnL_plant_match %>%
 ```
 
 Keep only distinct updated scientific name matches, and remove subspecies distinction.
+
 ```{r row removal}
 fuzzy_plants_trnL <- fuzzy_plants_trnL %>% 
   mutate(scientificName = replace(scientificName, scientificName == "Diplotaxis erucoides  subsp. cossoniana", "Diplotaxis erucoides")) %>% 
@@ -196,12 +210,14 @@ fuzzy_plants_trnL <- fuzzy_plants_trnL %>%
 ```
 
 Add updated names to ITS2 data with a left join.
+
 ```{r update trnL file}
 updated_trnL <- trnL_plants %>% 
   left_join(fuzzy_plants_trnL, by = "Species") 
 ```
 
 Rename columns and deselect unneeded columns.
+
 ```{r rename columns}
 updated_trnL <- updated_trnL %>% 
   rename(updated.Name = scientificName) %>% 
@@ -212,6 +228,7 @@ updated_trnL <- updated_trnL %>%
 ```
 
 Replace old names, genus, and family with new names in trnL file using ifelse statement.
+
 ```{r replace names}
 final_updated_trnL <- updated_trnL %>% 
   mutate(Species = if_else(!is.na(updated.Name),
@@ -225,7 +242,8 @@ final_updated_trnL <- updated_trnL %>%
                           false = Family))
 ```
 
-Quality check to make sure it worked! 
+Quality check to make sure it worked!
+
 ```{r quality check}
 final_updated_trnL %>% 
   filter(Species == "Reicheocactus famatinensis")
@@ -236,6 +254,7 @@ final_updated_trnL %>%
 ```
 
 Recreate WTUs. This is a specific identifier with a set code format used for this dataset.
+
 ```{r recreate WTU}
 # Add WeeTUs for Summarizing
 # https://dplyr.tidyverse.org/reference/group_data.html
@@ -254,6 +273,7 @@ updated_trnL_reads_WeeTU <- final_updated_trnL %>%
 ```
 
 Remove unneeded columns and save final data frame as a csv to outputs folder.
+
 ```{r save as csv}
 updated_trnL_reads_WeeTU <- updated_trnL_reads_WeeTU %>% 
   select(-c(updated.family, updated.genus, updated.Name, New.accepted))
