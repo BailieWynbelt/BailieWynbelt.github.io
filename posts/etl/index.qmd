@@ -6,16 +6,19 @@ categories: [Python, SQL, AWS, Validation]
 image: "etl.png"
 format: html
 ---
-The ETL (Extract, Transform, and Load), is a useful process for taking unuseable data and making it useable! This document contains code that was written for my data engineering class. Some of the code was provided by the professor - however it is noted when the code was not written by me. 
 
-The goal of this homework was to take a semi-structured non-normalized CSV file and turn it into a set of normalized tables that was then pushed to a **postgres** database hosted on **AWS**. Throughout the homework, I created a **database schema** and created tables with primary and foreign keys within the database. The database contains tables cases, judges, and casetype. These tables contain information about judge name, political party, gender, race, case year, casetype, etc. 
+The ETL (Extract, Transform, and Load), is a useful process for taking unuseable data and making it useable! This document contains code that was written for my data engineering class. Some of the code was provided by the professor - however it is noted when the code was not written by me.
+
+The goal of this homework was to take a semi-structured non-normalized CSV file and turn it into a set of normalized tables that was then pushed to a **postgres** database hosted on **AWS**. Throughout the homework, I created a **database schema** and created tables with primary and foreign keys within the database. The database contains tables cases, judges, and casetype. These tables contain information about judge name, political party, gender, race, case year, casetype, etc.
 
 This data could be used for a wide range of uses. For example, analysts could use the final summary table (that is created at the end of this document) to look at how political party inpacts court decisions.
 
 ## Bring in data and explore.
-The goal of this section is to import the data and gain a general overview of the data. 
+
+The goal of this section is to import the data and gain a general overview of the data.
 
 We cannot forget our import statements!
+
 ```{python}
 import pandas as pd
 import psycopg2
@@ -24,24 +27,29 @@ from pandas._libs.lib import count_level_2d
 ```
 
 First, we need to read in the data to get started.
+
 ```{python}
 #written by professor
 cases = pd.read_csv('https://docs.google.com/spreadsheets/d/1AWLK06JOlSKImgoHNTbj7oXR5mRfsL2WWeQF6ofMq1g/gviz/tq?tqx=out:csv')
 ```
 
 Lets look at the first and last 5 rows of the data.
+
 ```{python}
 print(cases.head())
 print(cases.tail())
 ```
 
 Now we know what columns our dataframe contains...but what are the data types of each? Are they what we could expect?
+
 ```{python}
 cases.dtypes
 ```
 
 ## Create functions that will help execute our queries and checks/validation faster.
+
 The following code was written by the professor - however it is crucial to the checks and execution of the database creation.
+
 ```{python}
 # run_query function
 def run_query(query_string):
@@ -118,9 +126,11 @@ def my_drop_table(tab_name):
 ```
 
 ## Make cases table and push to database.
+
 For this section I will be creating the first table of the schema: **cases**. This table will contain the columns case_id, case_year, category_name, casetype_id, judge_id, libcon_name. The data will be linked to the judge table by the judge_id column.
 
 First we need to make a foreign key to connect with the judge table.
+
 ```{python}
 # Make judge_id in cases
 cases['judge_id'] = pd.factorize(cases['judge_name'])[0].astype(str)
@@ -128,12 +138,14 @@ cases
 ```
 
 Select necessary columns to make cases_df.
+
 ```{python}
 cases_df = cases[['case_id','case_year', 'category_name', 'casetype_id', 'judge_id', 'libcon_name']]
 cases_df
 ```
 
 This is creating a database connection - confidential information such as user and password are not included for safety:)
+
 ```{python}
 #written by professor
 def get_conn_cur(): # define function name and arguments (there aren't any)
@@ -149,6 +161,7 @@ def get_conn_cur(): # define function name and arguments (there aren't any)
 ```
 
 Make table in database.
+
 ```{python}
 #make table
 tq = """CREATE TABLE cases (
@@ -162,6 +175,7 @@ tq = """CREATE TABLE cases (
 ```
 
 Execute and commit table!
+
 ```{python}
 conn, cur = get_conn_cur()
 cur.execute(tq)
@@ -169,11 +183,13 @@ conn.commit()
 ```
 
 Check column names to make sure everything looks correct.
+
 ```{python}
 get_column_names(table_name='cases')
 ```
- 
+
 Convert into tuple.
+
 ```{python}
 cases_tuple = cases_df.to_numpy();
 cases_tuple[:,1] = np.vectorize(lambda x: str(x))(cases_tuple[:,1])
@@ -181,11 +197,13 @@ data_tups = [tuple(x) for x in cases_tuple]
 ```
 
 write SQL string to add local data to database.
+
 ```{python}
 iq = """INSERT INTO cases(case_id, case_year, category_name, casetype_id, judge_id, libcon_name) VALUES(%s, %s, %s, %s, %s, %s);"""
 ```
 
 Commit and check complete table.
+
 ```{python}
 #Execute the string
 conn, cur = get_conn_cur()
@@ -200,9 +218,11 @@ sql_head(table_name='cases')
 ```
 
 ## Make a rollup table
-The process used to create the cases table is the same process that was used to create the other connecting tables (judges and casetype). To avoid repition, I will be skipping this code. However, I will be using the remaining code that was written. This has the goal of creating a summary table analysts could use to look at case decisions and political party type.
+
+The process used to create the cases table is the same process that was used to create the other connecting tables (judges and casetype). To avoid repetition, I will be skipping this code. However, I will be using the remaining code that was written. This has the goal of creating a summary table analysts could use to look at case decisions and political party type.
 
 First, I made a groupby called cases_rollup. This groups by party_name and category name and aggregates the count and sum of libcon_id.
+
 ```{python}
 cases_rollup = cases.groupby(['category_name', 'party_name'])['libcon_id'].agg(['sum', 'count']).reset_index()
 cases_rollup
@@ -210,7 +230,8 @@ cases_rollup
 cases_rollup.reset_index()
 ```
 
-#Rename columns to be consistant with new values.
+#Rename columns to be consistent with new values.
+
 ```{python}
 # rename your columns now. Keep the first to the same but call the last two 'total_cases' and 'num_lib_decisions'
 cases_rollup.rename(columns={'sum': 'num_lib_decisions', 'count': 'total_cases'}, inplace = True)
@@ -218,6 +239,7 @@ cases_rollup
 ```
 
 Now, I created a new column called 'percent_liberal'. This calculates the percentage of decisions that were liberal in nature.
+
 ```{python}
 cases_rollup['percent_liberal'] = round((cases_rollup['num_lib_decisions'] / cases_rollup['total_cases']) * 100)
 cases_rollup
