@@ -20,7 +20,7 @@ about:
 
 Hello! My name is Bailie.
 
-I am currently pursuing a Bachelor of Science in Information Science with an emphasis in Data Science. My expected graduation data is May 2024.
+I am currently pursuing a Bachelor of Science in Information Science with an emphasis in Data Science. My expected graduation date is May 2024.
 
 In my spare time, you can find me hiking around beautiful southern Arizona or crocheting!
 
@@ -34,7 +34,7 @@ School of Information \| Undergraduate Section Leader \| January 2024 - present
 
 National Phenology Network \| Systems Assistant \| September 2023 - December 2023
 
-Virga Labs \| Data Science Intern \| May 2023 - September 2023
+Virga Labs \| Website and Database Developer \| May 2023 - September 2023
 
 Arizona Youth Partnership \| Summer Intern (Analyst) \| May 2023 - August 2023
 
