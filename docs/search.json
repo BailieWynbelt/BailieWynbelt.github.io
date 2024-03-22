@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Hello, I’m Bailie! I’m currently pursuing a Bachelor of Science in Information Science with a focus in Data Science at the University of Arizona. I am deeply interested in the intersection of ecology and data science.\n\nMy journey into data science began while I was studying Natural Resources. I took a class focused on statistics and coding with an emphasis on ecology. I fell in love with the idea of combining data science and ecology, leading me to make the switch to my current degree.\n\nMy overall mission is to tackle challenging real-world problems by harnessing the power of data. My main skills fall in the realm of data wrangling, manipulation, analysis, visualization, and management in addition to front-end development with the overall goal of driving decision-making.\n\nIn addition to my academic and professional endeavors, I strive for diversity and inclusion in the tech community, with a particular interest in the queer tech community. I believe in the importance of fostering an inclusive environment where everyone’s talents and perspectives are valued!"
+    "text": "Hello, I’m Bailie! I am currently a senior pursuing a Bachelor of Science in Information Science with an emphasis in Data Science. My overall mission is to tackle challenging real-world problems by harnessing the power of data. My main skills fall in the realm of data wrangling, manipulation, analysis, visualization, and management with the overall goal of driving decision-making.\n\nIn addition to my academic and professional endeavors, I strive for diversity and inclusion in the tech community, with a particular interest in the queer tech community. I believe in the importance of fostering an inclusive environment where everyone’s talents and perspectives are valued!"
   },
   {
     "objectID": "index.html",
@@ -25,7 +25,7 @@
     "href": "index.html#experience",
     "title": "Bailie Wynbelt",
     "section": "Experience",
-    "text": "Experience\nNational Phenology Network | Systems Assistant | October 2023 - present\nVirga Labs | Data Science Intern | May 2023 - September 2023\nSchool of Natural Resources and the Environment | Data Science Research Assistant | January 2023 - present\nSchool of Natural Resources and the Environment ~ Ruyle Lab | Data Science Intern | August 2022 - December 2022"
+    "text": "Experience\nSchool of Information | Undergraduate Section Leader | January 2024 - present\nNational Phenology Network | Systems Assistant | September 2023 - December 2023\nVirga Labs | Data Science Intern | May 2023 - September 2023\nArizona Youth Partnership | Summer Intern (Analyst) | May 2023 - August 2023\nSchool of Natural Resources and the Environment | Data Science Research Assistant | January 2023 - present"
   },
   {
     "objectID": "posts/etl/index.html",
@@ -200,6 +200,6 @@
     "href": "posts.html",
     "title": "Projects",
     "section": "",
-    "text": "ETL: Extract, Transform, Load\n\n\n\n\n\n\n\nPython\n\n\nSQL\n\n\nAWS\n\n\nValidation\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nPython - Iris Analysis and Visualization\n\n\n\n\n\n\n\nPython\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nData Wrangling, Updates, and Validation\n\n\n\n\n\n\n\nR\n\n\nWrangling\n\n\nValidation\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nR - Palmer Penguin Analysis and Visualization\n\n\n\n\n\n\n\nR\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nMar 25, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\nNo matching items"
+    "text": "ETL: Extract, Transform, Load\n\n\n\n\n\n\n\nPython\n\n\nSQL\n\n\nAWS\n\n\nValidation\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nPython Data Wrangling Workshop\n\n\n\n\n\n\n\nPython\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nData Wrangling, Updates, and Validation\n\n\n\n\n\n\n\nR\n\n\nWrangling\n\n\nValidation\n\n\n\n\n\n\n\n\n\n\n\nOct 17, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\n  \n\n\n\n\nR - Palmer Penguin Analysis and Visualization\n\n\n\n\n\n\n\nR\n\n\nAnalysis\n\n\nVisualization\n\n\n\n\n\n\n\n\n\n\n\nMar 25, 2023\n\n\nBailie Wynbelt\n\n\n\n\n\n\nNo matching items"
   }
 ]
