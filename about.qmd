@@ -7,11 +7,7 @@ about:
   image-width: 15em
 ---
 
-Hello, I'm Bailie! I'm currently pursuing a Bachelor of Science in Information Science with a focus in Data Science at the University of Arizona. I am deeply interested in the intersection of ecology and data science.\
-\
-My journey into data science began while I was studying Natural Resources. I took a class focused on statistics and coding with an emphasis on ecology. I fell in love with the idea of combining data science and ecology, leading me to make the switch to my current degree.\
-\
-My overall mission is to tackle challenging real-world problems by harnessing the power of data. My main skills fall in the realm of data wrangling, manipulation, analysis, visualization, and management in addition to front-end development with the overall goal of driving decision-making.\
+Hello, I'm Bailie! I am currently a senior pursuing a Bachelor of Science in Information Science with an emphasis in Data Science. My overall mission is to tackle challenging real-world problems by harnessing the power of data. My main skills fall in the realm of data wrangling, manipulation, analysis, visualization, and management with the overall goal of driving decision-making.\
 \
 In addition to my academic and professional endeavors, I strive for diversity and inclusion in the tech community, with a particular interest in the queer tech community. I believe in the importance of fostering an inclusive environment where everyone's talents and perspectives are valued!
 
