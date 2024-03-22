@@ -1,0 +1,11 @@
+[
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/etl/index.html",
+      "/posts/iris_python/index.html",
+      "/posts/wrangling_R/index.html",
+      "/posts/palmer_R/index.html"
+    ]
+  }
+]
